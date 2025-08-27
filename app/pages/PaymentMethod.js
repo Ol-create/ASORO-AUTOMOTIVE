@@ -1,28 +1,34 @@
-// pages/PaymentMethods.js
 "use client";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
-import CardDetailsModal from "../components/CardDetailsModal"; // Adjust path as needed
+import CardDetailsModal from "../components/CardDetailsModal"; 
+import PaymentSuccessModal from "../components/PaymentSuccessModal";
 
 export default function PaymentMethods() {
   const [selected, setSelected] = useState("debit");
-  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isCardModalVisible, setIsCardModalVisible] = useState(false);
+  const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
 
   const handleDebitCardClick = () => {
     setSelected("debit");
-    setIsModalVisible(true);
+    setIsCardModalVisible(true);
   };
 
   const handleCashClick = () => {
     setSelected("cash");
-    setIsModalVisible(false);
+    setIsCardModalVisible(false);
+  };
+
+  const handleEnterClick = () => {
+    setIsCardModalVisible(false); // Hide the card details modal
+    setIsSuccessModalVisible(true); // Show the success modal
   };
 
   return (
     <div className="min-h-screen bg-gray-50 flex justify-center items-center p-4 w-full">
       <div className="bg-white w-full max-w-md rounded-2xl shadow p-6">
-        {/* Header */}
+        {/* ... (rest of the PaymentMethods component code) ... */}
         <div className="flex items-center gap-3 mb-6">
           <button className="p-2 rounded-full hover:bg-gray-100">
             <ArrowLeft className="w-5 h-5 text-gray-700" />
@@ -31,14 +37,11 @@ export default function PaymentMethods() {
             Payment Methods
           </h1>
         </div>
-        {/* Subtext */}
         <p className="text-center text-gray-500 mb-8">
           You can choose any payment method that is convenient
         </p>
 
-        {/* Payment Options */}
         <div className="space-y-4">
-          {/* Debit Card */}
           <div
             onClick={handleDebitCardClick}
             className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition 
@@ -71,7 +74,6 @@ export default function PaymentMethods() {
               />
             )}
           </div>
-          {/* Cash on Delivery */}
           <div
             onClick={handleCashClick}
             className={`flex items-center justify-between p-4 rounded-xl border cursor-pointer transition 
@@ -105,11 +107,18 @@ export default function PaymentMethods() {
         </div>
       </div>
 
-      {/* Conditionally render the modal */}
+      {/* Conditionally render the modals */}
       <CardDetailsModal
-        isVisible={isModalVisible}
-        onClose={() => setIsModalVisible(false)}
+        isVisible={isCardModalVisible}
+        onClose={() => setIsCardModalVisible(false)}
+        onEnter={handleEnterClick} // Pass the new handler
       />
+      { isSuccessModalVisible ?
+      (<PaymentSuccessModal
+        onClose={() => setIsSuccessModalVisible(false)}
+      />)
+      : null
+}
     </div>
   );
 }
