@@ -30,7 +30,7 @@ const PaymentSuccessModal = ({ onClose }) => {
           <div className="flex justify-end">
             <button
               onClick={onClose}
-              className="text-gray-400 hover:text-gray-600 transition-colors"
+              className="text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
               aria-label="Close modal"
             >
               <svg
@@ -68,13 +68,13 @@ const PaymentSuccessModal = ({ onClose }) => {
           {/* Action buttons */}
           <div className="space-y-4">
             <button
-              className="w-full py-3 px-4 rounded-lg border border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors"
+              className="w-full py-3 px-4 rounded-lg border border-gray-300 text-gray-800 font-semibold hover:text-white hover:bg-[#15337D] transition-colors cursor-pointer"
               onClick={() => setActiveModal("rate")}
             >
               Rate the Product
             </button>
             <button
-              className="w-full py-3 px-4 rounded-lg bg-blue-700 text-white font-semibold hover:bg-blue-800 transition-colors"
+              className="w-full py-3 px-4 text-gray-800 rounded-lg border border-gray-300 hover:text-white font-semibold hover:bg-[#15337D] transition-colors cursor-pointer"
               onClick={() => setActiveModal("invoice")}
             >
               Purchase Invoice

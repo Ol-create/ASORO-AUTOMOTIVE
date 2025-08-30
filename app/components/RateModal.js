@@ -19,7 +19,7 @@ const RateModal = ({ onClose }) => {
         {/* Close button */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600"
+          className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 cursor-pointer"
         >
           <X size={20} />
         </button>
