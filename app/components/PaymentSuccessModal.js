@@ -1,27 +1,37 @@
 // src/components/PaymentSuccessModal.jsx
 import Image from "next/image";
-import React, { useState } from "react";
-
+import React, { useState, useEffect } from "react";
 import RateModal from "./RateModal";
-
+import InvoiceModal from "./InvoicePage";
 
 const PaymentSuccessModal = ({ onClose }) => {
-  const [isRateVisible, setIsRateVisible] = useState(false);
+  const [activeModal, setActiveModal] = useState(null);
 
-  const handleRateModal = () => {
-    setIsRateVisible(true)
-  }
+  // Close modal on ESC key press
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") onClose();
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [onClose]);
+
   return (
-    // The backdrop
     <div>
-      <div className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center p-4">
-        {/* The modal container */}
-        <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-sm mx-auto transform transition-all">
+      {/* Backdrop */}
+      <div
+        className="fixed inset-0 bg-gray-600 bg-opacity-75 flex items-center justify-center p-4 animate-fadeIn"
+        role="dialog"
+        aria-modal="true"
+      >
+        {/* Modal container */}
+        <div className="bg-white rounded-xl shadow-lg p-6 w-full max-w-sm mx-auto transform transition-all scale-95 animate-scaleIn">
           {/* Close button */}
           <div className="flex justify-end">
             <button
               onClick={onClose}
               className="text-gray-400 hover:text-gray-600 transition-colors"
+              aria-label="Close modal"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +56,7 @@ const PaymentSuccessModal = ({ onClose }) => {
               src="/images/pay-check.png"
               width={50}
               height={50}
-              alt="pay check"
+              alt="Payment successful"
             />
           </div>
 
@@ -59,17 +69,27 @@ const PaymentSuccessModal = ({ onClose }) => {
           <div className="space-y-4">
             <button
               className="w-full py-3 px-4 rounded-lg border border-gray-300 text-gray-800 hover:bg-gray-50 transition-colors"
-              onClick={handleRateModal}
+              onClick={() => setActiveModal("rate")}
             >
               Rate the Product
             </button>
-            <button className="w-full py-3 px-4 rounded-lg bg-blue-700 text-white font-semibold hover:bg-blue-800 transition-colors">
+            <button
+              className="w-full py-3 px-4 rounded-lg bg-blue-700 text-white font-semibold hover:bg-blue-800 transition-colors"
+              onClick={() => setActiveModal("invoice")}
+            >
               Purchase Invoice
             </button>
           </div>
         </div>
       </div>
-      {isRateVisible ? <RateModal onClose={() => setIsRateVisible(false)} /> : null}
+
+      {/* Sub-modals */}
+      {activeModal === "rate" && (
+        <RateModal onClose={() => setActiveModal(null)} />
+      )}
+      {activeModal === "invoice" && (
+        <InvoiceModal onClose={() => setActiveModal(null)} />
+      )}
     </div>
   );
 };
