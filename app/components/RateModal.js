@@ -73,7 +73,7 @@ const RateModal = ({ onClose }) => {
         {/* Submit button */}
         <button
           onClick={handleSubmit}
-          className="w-full py-2 rounded-lg bg-blue-700 text-white font-semibold hover:bg-blue-800 transition-colors"
+          className="w-full py-2 rounded-lg bg-[#15337D] text-white font-semibold cursor-pointer transition-colors"
         >
           OK
         </button>

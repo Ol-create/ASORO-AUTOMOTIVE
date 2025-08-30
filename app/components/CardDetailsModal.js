@@ -38,30 +38,30 @@ export default function CardDetailsModal({ isVisible, onClose, onEnter }) {
             <input
               type="text"
               placeholder="Card Number"
-              className="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              className="px-3 bg-[#D9D9D9] py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
             />
             <div className="grid grid-cols-2 gap-4">
               <input
                 type="text"
                 placeholder="Expiry date"
-                className="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                className="px-3 bg-[#D9D9D9] py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
               <input
                 type="text"
                 placeholder="VCC"
-                className="px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+                className="px-3 bg-[#D9D9D9] py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
               />
             </div>
           </div>
           <input
             type="text"
             placeholder="Card holder Name"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-3 bg-[#D9D9D9] py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           />
           <input
             type="text"
             placeholder="Address"
-            className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+            className="w-full px-3 bg-[#D9D9D9] py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           />
           <button
             type="submit"
