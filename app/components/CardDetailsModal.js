@@ -65,7 +65,7 @@ export default function CardDetailsModal({ isVisible, onClose, onEnter }) {
           />
           <button
             type="submit"
-            className="w-full bg-[#122F7B] text-white font-semibold py-2 rounded-xl hover:bg-blue-700 transition"
+            className="w-full bg-[#122F7B] text-white font-semibold py-2 rounded-lg transition cursor-pointer"
           >
             Enter
           </button>
